@@ -156,7 +156,11 @@ class Agent:
         # 仅传入函数实际接受的参数，避免 LLM 多余参数导致 TypeError
         sig = inspect.signature(tool.func)
         accepted = {k for k, p in sig.parameters.items() if p.kind in (p.POSITIONAL_OR_KEYWORD, p.KEYWORD_ONLY)}
-        return await tool.func(**{k: v for k, v in kwargs.items() if k in accepted})
+        result = tool.func(**{k: v for k, v in kwargs.items() if k in accepted})
+        # 工具既支持异步函数，也支持同步纯函数（领域计算）
+        if inspect.isawaitable(result):
+            result = await result
+        return result
 
 
 # ---------------------------------------------------------------
