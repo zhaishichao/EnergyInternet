@@ -240,6 +240,8 @@ def get_overview(region: str = "园区A") -> Dict:
     return {
         "region": region,
         "type": REGIONS[region]["类型"],
+        "pv_cap": REGIONS[region]["光伏装机MWp"],
+        "wind_cap": REGIONS[region]["风电装机MW"],
         "load": load_curve(region),
         "pv": pv_curve(region),
         "wind": wind_curve(region),

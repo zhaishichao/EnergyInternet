@@ -3,10 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>能源互联网智能体</title>
+  <title>能源互联网智能体 · EnergyInternet Agent</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
-  <h1>能源互联网智能体</h1>
-  <p>前端界面开发中……</p>
+  <div class="app">
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="logo">⚡</span>
+        <div>
+          <div class="brand-name">能源互联网智能体</div>
+          <div class="brand-sub">EnergyInternet Agent</div>
+        </div>
+      </div>
+      <button class="new-chat" id="newChat">＋ 新建对话</button>
+
+      <div class="sidebar-scroll">
+        <div class="section-title">会话历史</div>
+        <div id="historyList"></div>
+
+        <div class="section-title">智能体团队</div>
+        <div id="agentsList"><div class="history-empty">加载中…</div></div>
+
+        <div class="section-title">园区运行概览</div>
+        <select class="region-select" id="regionSelect">
+          <option value="园区A">园区A · 产业园区</option>
+          <option value="园区B">园区B · 商业综合体</option>
+          <option value="工厂C">工厂C · 制造工厂</option>
+        </select>
+        <div class="kpi-row" id="kpiRow"></div>
+        <div id="energyChart" class="energy-chart"></div>
+      </div>
+    </aside>
+
+    <!-- 主区 -->
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-title" id="topbarTitle">新对话</div>
+        <div class="topbar-status" id="topbarStatus"><span class="dot" id="statusDot"></span><span id="statusText">检测中…</span></div>
+      </header>
+
+      <div class="messages" id="messages"></div>
+
+      <div class="composer-wrap">
+        <div class="composer">
+          <textarea id="input" rows="1" placeholder="向能源互联网智能体提问，例如：帮我优化园区的储能充放电策略"></textarea>
+          <button id="send" title="发送">➤</button>
+        </div>
+        <div class="composer-hint">Enter 发送 · Shift+Enter 换行</div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <script src="/static/app.js"></script>
 </body>
 </html>
