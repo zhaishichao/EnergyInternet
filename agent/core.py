@@ -175,6 +175,7 @@ class Supervisor(Agent):
         subagents: List[Agent],
         extra_tools: Optional[List[Tool]] = None,
     ):
+        self.subagents = subagents
         tools = [self._delegate_tool(a) for a in subagents] + (extra_tools or [])
         super().__init__(name, role, system_prompt, tools)
 
